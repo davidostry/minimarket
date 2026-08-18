@@ -36,12 +36,6 @@ const products = [
         image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80"
     },
     {
-        name: "Chocolate",
-        category: "Sweets",
-        price: 10.90,
-        image: "https://images.unsplash.com/photo-1548907040-4d42f8c6c6f4?auto=format&fit=crop&w=600&q=80"
-    },
-    {
         name: "Orange Juice",
         category: "Beverages",
         price: 11.90,
@@ -63,12 +57,15 @@ const products = [
 
 const allProducts = document.querySelector(".products")
 const fetchBtn = document.querySelector(".button")
+
 fetchBtn.addEventListener("click", (e)=>{
 createProducts()
         
 })
 
 function createProducts(){
+    fetchBtn.remove()
+
     products.forEach((product)=>{
         const card = createCard(product.image, product.name, product.category, product.price);
         allProducts.appendChild(card)
@@ -81,19 +78,23 @@ function createCard(img, tytle, category, cost){
     const name = document.createElement("h3");
     const section = document.createElement("p");
     const price = document.createElement("p");
+    const order = document.createElement("button")
 
     card.classList.add("card");
-    imgTag.classList.add("card-img");
+    order.classList.add("order")
+    
 
     name.textContent = tytle;
     imgTag.src = img;
     section.textContent = category;
     price.textContent = cost
+    order.textContent = "add to order"
 
     card.appendChild(name);
     card.appendChild(imgTag);
     card.appendChild(section);
     card.appendChild(price);
+    card.appendChild(order)
 
     return card;
 

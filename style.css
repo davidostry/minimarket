@@ -1,26 +1,90 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.nav{
+.nav {
     background-color: rgb(108, 47, 47);
     color: white;
+    text-align: center;
+    height: 15vh;
+
 }
 
-.main{
-display: flex;
-justify-content: space-between;
+.main {
+    border: solid 1px;
+    border-radius: 10px;
+    height: 70vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: scroll;
+    grid-template-rows: 60px 1fr;
+    grid-template-areas:
+        "h2 button"
+        "products products";
+        margin: 20px;
+
+
+}
+h2{
+    grid-area: h2;
 }
 
-.button{
+
+.button {
+    grid-area: button;
     background-color: rgb(41, 41, 243);
     color: whitesmoke;
+    align-self: center;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.products {
+    height: 100%;
+    grid-area: products;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+
 
 }
 
-.products{
-    border: solid 2px black;
+.card {
+    border: 1px solid ;
+    border-radius: 20px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    text-align: center;
+    margin: 2px;
+    padding: 10px;
+}
 
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.order{
+    background-color: rgb(52, 52, 240);
+    border-radius: 5px;
+}
+
+.footer{
+    
+    margin: 20px;
+    border: 1px solid;
+    border-radius: 10px;
+    border-top: solid 2px blue;
+}
+
+
+.totalButton{
+    background-color: rgb(39, 196, 39);
+    border-radius: 20px;
+    
+    
 }
