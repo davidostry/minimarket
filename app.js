@@ -57,6 +57,13 @@ const products = [
 
 const allProducts = document.querySelector(".products")
 const fetchBtn = document.querySelector(".button")
+const orderButton = document.querySelector(".order")
+const cart = document.querySelector(".cart")
+const totalPrice = document.querySelector(".totalPrice")
+const orders = document.querySelector(".orders");
+const empty = document.querySelector(".empty")
+const execute = document.querySelector(".executeButton")
+let total = 0;
 
 fetchBtn.addEventListener("click", (e)=>{
 createProducts()
@@ -78,7 +85,9 @@ function createCard(img, tytle, category, cost){
     const name = document.createElement("h3");
     const section = document.createElement("p");
     const price = document.createElement("p");
-    const order = document.createElement("button")
+    const order = document.createElement("button");
+
+
 
     card.classList.add("card");
     price.classList.add("price")
@@ -101,10 +110,8 @@ function createCard(img, tytle, category, cost){
 
 }
 
-const orderButton = document.querySelector(".order")
-const cart = document.querySelector(".cart")
-const totalPrice = document.querySelector(".totalPrice")
-let total = 0;
+
+
 
 allProducts.addEventListener('click', (e)=>{
 
@@ -119,11 +126,25 @@ allProducts.addEventListener('click', (e)=>{
 
 function createOrder(tytle, price){
     const item = document.createElement("p");
-    item.textContent = `${tytle} -${price}`
+    item.textContent = `${tytle} = ${price}`
     total += price;
-    cart.appendChild(item)
-    totalPrice.textContent = `${total.toFixed(2)} $`
+    empty.remove()
+    orders.prepend(item)
+    totalPrice.textContent = `total price: ${total.toFixed(2)} $`
 }
+
+execute.addEventListener('click', (e)=>{
+
+    orders.innerHTML = "";
+    total = 0
+    totalPrice.textContent = "total price: 0 $";
+
+    orders.appendChild(empty);
+})
+
+
+
+
 
 
 
