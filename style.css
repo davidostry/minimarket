@@ -88,3 +88,12 @@ h2{
     
     
 }
+.item{
+   
+}
+.remove{
+    background-color: red;
+     display: flex;
+    justify-content: end;
+    
+}

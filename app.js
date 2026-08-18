@@ -65,21 +65,21 @@ const empty = document.querySelector(".empty")
 const execute = document.querySelector(".executeButton")
 let total = 0;
 
-fetchBtn.addEventListener("click", (e)=>{
-createProducts()
-        
+fetchBtn.addEventListener("click", (e) => {
+    createProducts()
+
 })
 
-function createProducts(){
+function createProducts() {
     fetchBtn.remove()
 
-    products.forEach((product)=>{
+    products.forEach((product) => {
         const card = createCard(product.image, product.name, product.category, product.price);
         allProducts.appendChild(card)
     })
 }
 
-function createCard(img, tytle, category, cost){
+function createCard(img, tytle, category, cost) {
     const card = document.createElement("div");
     const imgTag = document.createElement("img");
     const name = document.createElement("h3");
@@ -92,7 +92,7 @@ function createCard(img, tytle, category, cost){
     card.classList.add("card");
     price.classList.add("price")
     order.classList.add("order");
-    
+
 
     name.textContent = tytle;
     imgTag.src = img;
@@ -113,27 +113,45 @@ function createCard(img, tytle, category, cost){
 
 
 
-allProducts.addEventListener('click', (e)=>{
+allProducts.addEventListener('click', (e) => {
 
-    if (!e.target.classList.contains("order")){
+    if (!e.target.classList.contains("order")) {
         return;
     }
     const orderCard = e.target.closest(".card");
     const tytle = orderCard.querySelector("h3").textContent;
-    const price = Number (orderCard.querySelector(".price").textContent)
+    const price = Number(orderCard.querySelector(".price").textContent)
     createOrder(tytle, price)
 })
 
-function createOrder(tytle, price){
-    const item = document.createElement("p");
-    item.textContent = `${tytle} = ${price}`
+function createOrder(tytle, price) {
+    const item = document.createElement("div");
+    const text = document.createElement("span");
+    const removeButton = document.createElement("button");
+
+    text.textContent = `${tytle} = ${price}`;
+    removeButton.textContent = "remove";
+
+    item.classList.add("item")
+    removeButton.classList.add("remove")
+
+    item.appendChild(text);
+    item.appendChild(removeButton);
+
     total += price;
-    empty.remove()
-    orders.prepend(item)
+    empty.remove();
+    orders.prepend(item);
     totalPrice.textContent = `total price: ${total.toFixed(2)} $`
+
+    removeButton.addEventListener('click', (e) => {
+        item.remove();
+        total -= price;
+        totalPrice.textContent = `total price: ${total.toFixed(2)} $`;
+
+    })
 }
 
-execute.addEventListener('click', (e)=>{
+execute.addEventListener('click', (e) => {
 
     orders.innerHTML = "";
     total = 0
