@@ -81,7 +81,8 @@ function createCard(img, tytle, category, cost){
     const order = document.createElement("button")
 
     card.classList.add("card");
-    order.classList.add("order")
+    price.classList.add("price")
+    order.classList.add("order");
     
 
     name.textContent = tytle;
@@ -99,4 +100,30 @@ function createCard(img, tytle, category, cost){
     return card;
 
 }
+
+const orderButton = document.querySelector(".order")
+const cart = document.querySelector(".cart")
+const totalPrice = document.querySelector(".totalPrice")
+let total = 0;
+
+allProducts.addEventListener('click', (e)=>{
+
+    if (!e.target.classList.contains("order")){
+        return;
+    }
+    const orderCard = e.target.closest(".card");
+    const tytle = orderCard.querySelector("h3").textContent;
+    const price = Number (orderCard.querySelector(".price").textContent)
+    createOrder(tytle, price)
+})
+
+function createOrder(tytle, price){
+    const item = document.createElement("p");
+    item.textContent = `${tytle} -${price}`
+    total += price;
+    cart.appendChild(item)
+    totalPrice.textContent = `${total.toFixed(2)} $`
+}
+
+
 
